@@ -58,8 +58,8 @@ app.controller('FlightController', function ($scope, Flight) {
             {
                 departure: flight.departure,
                 arrival: flight.arrival,
-                date: flight.date,
-                return_date: flight.return_date,
+                date: flight.date,      // long
+                return_date: flight.return_date,        // long
                 seat_count: flight.seat_count
             }, function (flights) {
 
