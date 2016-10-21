@@ -12,7 +12,7 @@ app.controller('FlightController', function ($scope, Flight) {
                 item.flightId = flight.flightId;
                 item.departure = flight.departure;
                 item.arrival = flight.arrival;
-                item.date = (new Date(flight.date)).toDateString();
+                item.date = (new Date(parseInt(flight.date))).toDateString();
                 item.time = flight.time;
 
                 flight.info.forEach(function (info) {
