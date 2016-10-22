@@ -41,10 +41,10 @@
 
             <tr>
                 <td>
-                    <input class="form-control" ng-model="airport.airportId" required="" placeholder="Mã số sinh viên">
+                    <input class="form-control" ng-model="airport.airportId" required="" placeholder="Mã sân bay">
                 </td>
                 <td>
-                    <input class="form-control" ng-model="airport.name" placeholder="Họ tên">
+                    <input class="form-control" ng-model="airport.name" placeholder="Tên sân bay">
                 </td>
 
                 <td>
@@ -103,27 +103,42 @@
             </tbody>
         </table>
         <input class="form-control" ng-model="flight.flightId" required="" placeholder="Mã chuyến bay">
-        <!--<input class="form-control" ng-model="flight.departure" placeholder="Họ tên">-->
         <div class="input-field col s12">
-            <select ng-repeat="item in airports">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <select ng-model="flight.departure" onchange="">
+                <option value="" disabled selected>Chọn sân bay</option>
+                <option ng-repeat="item in airports" value="{{item.airportId}}">{{item.name}}({{item.airportId}})</option>
             </select>
-            <label>Materialize Select</label>
+            <label>Sân bay đi</label>
         </div>
-        <input class="form-control" ng-model="flight.arrival" placeholder="Đến">
-        <input class="form-control" ng-model="flight.date" required="" placeholder="Mã số sinh viên">
-        <input class="form-control" ng-model="flight.time" placeholder="Họ tên">
-        <input class="form-control" ng-model="flight.info.class" required="" placeholder="Mã số sinh viên">
-        <input class="form-control" ng-model="flight.info.price" placeholder="Họ tên">
-        <input class="form-control" ng-model="flight.info.total_seat" required=""
-               placeholder="Mã số sinh viên">
+        <div>model = {{flight.departure}}</div><br/>
+        <div class="input-field col s12">
+            <select ng-model="flight.arrival">
+                <option value="" disabled selected>Chọn sân bay</option>
+                <option ng-repeat="item in airports" value="{{item.airportId}}">{{item.name}}({{item.airportId}})</option>
+            </select>
+            <label>Sân bay đi</label>
+        </div>
+        <div>model = {{flight.arrival}}</div><br/>
+        <input type="date"class="datepicker" ng-model="flight.date" required="" placeholder="ngày">
+        <input type="time" class="timepicker" ng-model="flight.time" placeholder="giờ">
+
+        <div class="input-field col s12">
+            <select ng-model="flight.info.class" onchange="">
+                <option value="" disabled selected>Chọn sân bay</option>
+                <option value="F">Hạng nhất</option>
+                <option value="B">Hạng thương gia</option>
+                <option value="E">Hạng phổ thông</option>
+            </select>
+            <label>Hạng</label>
+        </div>
+        <div>model = {{flight.info.class}}</div><br/>
+
+        <input class="form-control" ng-model="flight.info.price" placeholder="Mức giá">
+        <input class="form-control" ng-model="flight.info.total_seat" required="" placeholder="Số ghế">
         <input class="form-control" ng-model="flight.info.cost" required=""
-               placeholder="Mã số sinh viên">
-        <button class="btn btn-lg" ng-click="add(flight)" ng-if="!flight._id" type="submit"
-                ng-disabled="!flight_dashboard.$valid">
+               placeholder="Giá">
+
+        <button class="btn btn-lg" ng-click="add(flight)" ng-if="!flight._id" type="submit" ng-disabled="!flight_dashboard.$valid">
             <span class="glyphicon glyphicon-plus">Thêm</span>
         </button>
     </form>
