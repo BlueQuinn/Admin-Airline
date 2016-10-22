@@ -13,10 +13,10 @@ app.controller('AirportController', function ($scope, Airport) {
     };
 
     var reload = function () {
-        $scope.airports = Airport.query(function (data) {
+        $scope.airports =
+        Airport.query(function (data) {
             var a =data;
         });
-
         $scope.airport = {};
     };
 

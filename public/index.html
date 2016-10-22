@@ -99,46 +99,33 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <input class="form-control" ng-model="flight.flightId" required="" placeholder="Mã số sinh viên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.departure" placeholder="Họ tên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.arrival" placeholder="Họ tên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.date" required="" placeholder="Mã số sinh viên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.time" placeholder="Họ tên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.info.class" required="" placeholder="Mã số sinh viên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.info.price" placeholder="Họ tên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.info.total_seat" required=""
-                           placeholder="Mã số sinh viên">
-                </td>
-                <td>
-                    <input class="form-control" ng-model="flight.info.cost" required=""
-                           placeholder="Mã số sinh viên">
-                </td>
 
-                <td>
-                    <button class="btn btn-lg" ng-click="add(flight)" ng-if="!flight._id" type="submit"
-                            ng-disabled="!flight_dashboard.$valid">
-                        <span class="glyphicon glyphicon-plus">Thêm</span>
-                    </button>
-                </td>
-            </tr>
             </tbody>
         </table>
+        <input class="form-control" ng-model="flight.flightId" required="" placeholder="Mã chuyến bay">
+        <!--<input class="form-control" ng-model="flight.departure" placeholder="Họ tên">-->
+        <div class="input-field col s12">
+            <select ng-repeat="item in airports">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Materialize Select</label>
+        </div>
+        <input class="form-control" ng-model="flight.arrival" placeholder="Đến">
+        <input class="form-control" ng-model="flight.date" required="" placeholder="Mã số sinh viên">
+        <input class="form-control" ng-model="flight.time" placeholder="Họ tên">
+        <input class="form-control" ng-model="flight.info.class" required="" placeholder="Mã số sinh viên">
+        <input class="form-control" ng-model="flight.info.price" placeholder="Họ tên">
+        <input class="form-control" ng-model="flight.info.total_seat" required=""
+               placeholder="Mã số sinh viên">
+        <input class="form-control" ng-model="flight.info.cost" required=""
+               placeholder="Mã số sinh viên">
+        <button class="btn btn-lg" ng-click="add(flight)" ng-if="!flight._id" type="submit"
+                ng-disabled="!flight_dashboard.$valid">
+            <span class="glyphicon glyphicon-plus">Thêm</span>
+        </button>
     </form>
 </div>
 
@@ -146,7 +133,7 @@
 <toaster-container
         toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 
-<script src="javascripts/jquery-3.1.0.slim.min.js"></script>
+<script src="javascripts/jquery-3.1.1.min.js"></script>
 <script src="javascripts/materialize.js"></script>
 <script src="javascripts/angular.min.js"></script>
 <script src="javascripts/angular-resource.min.js"></script>

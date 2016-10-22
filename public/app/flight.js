@@ -73,4 +73,10 @@ app.controller('FlightController', function ($scope, Flight) {
         });
     };
 
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+
+
+
 });
