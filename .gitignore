@@ -48,4 +48,9 @@ Temporary Items
 
 # Dependency directories
 node_modules/
+
+# Data Mongodb
 data/
+.idea/workspace.xml
+Admin-Airline.rar
+

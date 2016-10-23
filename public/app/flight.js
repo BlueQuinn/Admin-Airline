@@ -2,7 +2,7 @@
  * Created by lequan on 10/20/2016.
  */
 
-app.controller('FlightController', function ($scope, Flight) {
+app.controller('FlightController', function ($scope, Flight, Airport) {
 
     var reload = function () {
         Flight.query(function (data) {
@@ -32,6 +32,14 @@ app.controller('FlightController', function ($scope, Flight) {
 
     reload();
 
+    $scope.getAirports = function () {
+        $scope.airports = Airport.query(function (data) {
+            var a =data;
+        });
+    };
+
+    $scope.getAirports();
+
     $scope.add = function (flight) {
         flight.date = (new Date()).getTime();
         Flight.save(flight, function () {
@@ -42,11 +50,11 @@ app.controller('FlightController', function ($scope, Flight) {
 
 
     $scope.getArrival = function () {
-        $scope.departureId = 'HAN';
-        Flight.query({departure: $scope.departureId}, function (data) {
-            $scope.arrival = [];
+
+        Flight.query({departure: $scope.flight.departure}, function (data) {
+            $scope.arrivals = [];
             data.forEach(function (item) {
-                $scope.arrival.push(item);
+                $scope.arrivals.push(item);
             });
         });
     };
@@ -72,5 +80,11 @@ app.controller('FlightController', function ($scope, Flight) {
 
         });
     };
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+
+
 
 });
