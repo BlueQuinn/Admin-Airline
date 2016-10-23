@@ -62,7 +62,7 @@
 <br>
 
 <div class="container" ng-controller="FlightController">
-    <h5>Flights Dashboard</h5>
+    <h4>Flights Dashboard</h4>
     <form name="flight_dashboard" novalidate>
         <table class="table">
             <thead>
@@ -122,21 +122,41 @@
         <input type="date"class="datepicker" ng-model="flight.date" required="" placeholder="ngày">
         <input type="time" class="timepicker" ng-model="flight.time" placeholder="giờ">
 
-        <div class="input-field col s12">
-            <select ng-model="flight.info.class" onchange="">
-                <option value="" disabled selected>Chọn sân bay</option>
-                <option value="F">Hạng nhất</option>
-                <option value="B">Hạng thương gia</option>
-                <option value="E">Hạng phổ thông</option>
-            </select>
-            <label>Hạng</label>
-        </div>
-        <div>model = {{flight.info.class}}</div><br/>
+        <h5>Thương gia linh hoạt</h5>
 
-        <input class="form-control" ng-model="flight.info.price" placeholder="Mức giá">
-        <input class="form-control" ng-model="flight.info.total_seat" required="" placeholder="Số ghế">
-        <input class="form-control" ng-model="flight.info.cost" required=""
+        <!--<div class="input-field col s12">-->
+            <!--<select ng-model="flight.info[0].class" onchange="">-->
+                <!--<option value="" disabled selected>Chọn hạng vé</option>-->
+                <!--<option value="F">Hạng nhất</option>-->
+                <!--<option value="B">Hạng thương gia</option>-->
+                <!--<option value="E">Hạng phổ thông</option>-->
+            <!--</select>-->
+            <!--<label>Hạng</label>-->
+        <!--</div>-->
+
+        <!--<input class="form-control" ng-model="flight.info.price" placeholder="Mức giá">-->
+        <input type="number" class="form-control" ng-model="flight.info[0].total_seat" required="" placeholder="Số ghế" ng-init="flight.info[0].class='F'">
+        <input class="form-control" ng-model="flight.info[0].cost" required=""
                placeholder="Giá">
+
+        <h5>Thương gia tiêu chuẩn</h5>
+
+        <!--<div class="input-field col s12">-->
+            <!--<select ng-model="flight.info[1].class" onchange="">-->
+                <!--<option value="" disabled selected>Chọn hạng vé</option>-->
+                <!--<option value="F">Hạng nhất</option>-->
+                <!--<option value="B">Hạng thương gia</option>-->
+                <!--<option value="E">Hạng phổ thông</option>-->
+            <!--</select>-->
+            <!--<label>Hạng</label>-->
+        <!--</div>-->
+
+        <!--<input class="form-control" ng-model="flight.info.price" placeholder="Mức giá">-->
+        <input type="number" class="form-control" ng-model="flight.info[1].total_seat" required="" placeholder="Số ghế" ng-init="flight.info[1].class='E'">
+        <input class="form-control" ng-model="flight.info[1].cost" required=""
+               placeholder="Giá">
+
+        <div>model = {{flight.info}}</div><br/>
 
         <button class="btn btn-lg" ng-click="add(flight)" ng-if="!flight._id" type="submit" ng-disabled="!flight_dashboard.$valid">
             <span class="glyphicon glyphicon-plus">Thêm</span>
