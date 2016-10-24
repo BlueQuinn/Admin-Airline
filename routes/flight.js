@@ -9,27 +9,32 @@ var router = express.Router();
 router.post('/', function (req, res) {
 
     var flight = Object.assign(new Flight(), req.body);
-    flight.info.available_seat = flight.info.total_seat;
+    flight.date = longToDate(req.body.date);
+    flight.time = longToTime(req.body.time);
+    //flight.info.available_seat = flight.info.total_seat;
 
-    Flight.find({flightId: flight.flightId, date: longToDate(flight.date)}, function (err, data) {
+    Flight.find({flightId: flight.flightId, date: flight.date}, function (err, data) {
         if (err) {
             res.send(err);
             return;
         }
 
         if (data.length < 1) {
+
             flight.save(function (err, docs) {
-                if (err)
+                if (err) {
                     res.send(err);
+                    return;
+                }
                 res.json(
                     {
                         message: "Thêm chuyến bay thành công."
                     }
                 );
-            });
+            })
         }
         else {
-            if (flight.info !== undefined) {
+            /*if (flight.info !== undefined) {
                 data[0].info.push(flight.info);
                 data[0].save(function (err, docs) {
                     if (err)
@@ -40,7 +45,7 @@ router.post('/', function (req, res) {
                         }
                     );
                 });
-            }
+            }*/
         }
     });
 });
@@ -125,6 +130,10 @@ function longToDate(millisecond) {
     return date.getDate().toString() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 }
 
+function longToTime(millisecond) {
+    var date = new Date(millisecond);
+    return date.getHours().toString() + ':' + date.getMinutes();
+}
 
 var SEARCH_FLIGHTS = 1;
 var GET_ALL_FLIGHTS = 2;
