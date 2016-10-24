@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/daterangepicker.css">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/angular-material.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 </head>
 <body ng-cloak ng-app="app">
 <h1 style="padding-left: 50px">Admin Dashboard</h1>
@@ -54,9 +54,7 @@
 
                 <td>
                     <md-button class="md-raised md-primary" ng-click="add(airport)" ng-if="!airport._id" type="submit"
-                               ng-disabled="!airport_dashboard.$valid">
-                        <span class="glyphicon glyphicon-plus">Thêm</span>
-                    </md-button>
+                               ng-disabled="!airport_dashboard.$valid">Thêm</md-button>
 
                 </td>
             </tr>
@@ -107,21 +105,13 @@
             </tbody>
         </table>
 
-        <!--<input class="form-control" ng-model="flight.flightId" required="" placeholder="Mã chuyến bay">-->
         <div>
             <md-input-container>
                 <label>Mã chuyến bay</label>
                 <input required ng-model="flight.flightId">
             </md-input-container>
         </div>
-        <!--<div class="input-field col s12">-->
-            <!--<select ng-model="flight.departure" onchange="">-->
-                <!--<option value="" disabled selected>Chọn sân bay</option>-->
-                <!--<option ng-repeat="item in airports" value="{{item.airportId}}">{{item.name}}({{item.airportId}})-->
-                <!--</option>-->
-            <!--</select>-->
-            <!--<label>Sân bay đi</label>-->
-        <!--</div>-->
+
         <div>
             <md-input-container style="margin-right: 10px;">
                 <label>Sân bay đi</label>
@@ -136,14 +126,6 @@
 
         <br/>
 
-        <!--<div class="input-field col s12">-->
-            <!--<select ng-model="flight.arrival">-->
-                <!--<option value="" disabled selected>Chọn sân bay</option>-->
-                <!--<option ng-repeat="item in airports" value="{{item.airportId}}">{{item.name}}({{item.airportId}})-->
-                <!--</option>-->
-            <!--</select>-->
-            <!--<label>Sân bay đi</label>-->
-        <!--</div>-->
         <div>
             <md-input-container style="margin-right: 10px;">
                 <label>Sân bay đến</label>
@@ -176,9 +158,7 @@
         </div>
 
         <md-button class="md-raised md-primary" ng-click="add(flight)" ng-if="!flight._id" type="submit"
-                   ng-disabled="!flight_dashboard.$valid">
-            <span class="glyphicon glyphicon-plus">Thêm</span>
-        </md-button>
+                   ng-disabled="!flight_dashboard.$valid">Thêm</md-button>
     </form>
 </div>
 
