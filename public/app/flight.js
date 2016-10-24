@@ -2,6 +2,7 @@
  * Created by lequan on 10/20/2016.
  */
 
+
 app.controller('FlightController', function ($scope, Flight, Airport) {
 
     var reload = function () {
