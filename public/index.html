@@ -6,36 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="stylesheets/daterangepicker.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/angular-material.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/daterangepicker.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body ng-cloak ng-app="app">
 <h1 style="padding-left: 50px">Admin Dashboard</h1>
 
+<div class="actionbar col-lg-12">
+<h3>Airports Dashboard</h3>
+</div>
 <div class="container" ng-controller="AirportController">
-    <h3>Airports Dashboard</h3>
     <form name="airport_dashboard" novalidate>
         <table class="table">
             <thead>
             <tr>
                 <th>Airport code</th>
                 <th>City</th>
-                <th></th>
+             <!--   <th></th>-->
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in airports">
                 <td>{{item.airportId}}</td>
                 <td>{{item.name}}</td>
-                <td>
+            <!--    <td>
                     <div class="btn-group">
                         <button type="button" class="btn-transparent" ng-click="delete(item)">
                             <i class="material-icons">delete</i>
                         </button>
                     </div>
-                </td>
+                </td>-->
             </tr>
 
             <tr>
@@ -65,6 +67,9 @@
 
 <br>
 
+<div class="actionbar col-lg-12">
+    <h3>Flights Dashboard</h3>
+</div>
 <div class="container" ng-controller="FlightController">
     <h3>Flights Dashboard</h3>
     <form name="flight_dashboard" novalidate>
@@ -80,7 +85,7 @@
                 <th>Mức giá</th>
                 <th>Số ghế</th>
                 <th>Giá vé</th>
-                <th></th>
+              <!--  <th></th>-->
             </tr>
             </thead>
             <tbody>
@@ -94,13 +99,16 @@
                 <td>{{item.price}}</td>
                 <td>{{item.total_seat}}</td>
                 <td>{{item.cost}}</td>
-                <td>
+              <!--  <td>
                     <div class="btn-group">
                         <button type="button" class="btn-transparent" ng-click="delete(item)">
                             <i class="material-icons">delete</i>
                         </button>
                     </div>
-                </td>
+                </td>-->
+
+                <br>
+
             </tr>
             </tbody>
         </table>
@@ -122,7 +130,6 @@
                 </md-select>
             </md-input-container>
         </div>
-        <div>model = {{flight.departure}}</div>
 
         <br/>
 
@@ -136,17 +143,12 @@
                 </md-select>
             </md-input-container>
         </div>
-        <div>model = {{flight.arrival}}</div>
         <br/>
 
         <input type="text" id="datetimepicker"/>
 
         <div ng-repeat="item in info">
             <h5>{{item}}</h5>
-            <!--<input type="number" class="form-control" ng-model="flight.info[$index].total_seat" required=""-->
-                   <!--placeholder="Số ghế">-->
-            <!--<input class="form-control" ng-model="flight.info[$index].cost" required="" placeholder="Giá">-->
-
             <md-input-container>
                 <label>Số ghế</label>
                 <input required type="number" min="0" ng-model="flight.info[$index].total_seat">
@@ -163,21 +165,18 @@
 </div>
 
 <div data-loading></div>
-<toaster-container
-        toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+
 
 <script src="javascripts/jquery-3.1.1.min.js"></script>
 <script src="javascripts/angular.min.js"></script>
 <script src="javascripts/angular-resource.min.js"></script>
 <script src="javascripts/angular-animate.min.js"></script>
-<script src="javascripts/angular-material.js"></script>
 <script src="javascripts/angular-messages.min.js"></script>
 <script src="javascripts/angular-aria.min.js"></script>
+<script src="javascripts/angular-material.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
 <script src="javascripts/moment.min.js"></script>
 <script src="javascripts/daterangepicker.js"></script>
-<script src="javascripts/ngProgress.min.js"></script>
-<script src="javascripts/toaster.js"></script>
 <script src="app/app.js"></script>
 <script src="app/factory.js"></script>
 <script src="app/airport.js"></script>

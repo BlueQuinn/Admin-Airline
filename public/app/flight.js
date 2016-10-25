@@ -69,6 +69,12 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
     $scope.getAirports();
 
     $scope.add = function (flight) {
+        if (flight.departure == flight.arrival)
+        {
+            alert('Sân bay đến phải khác sân bay đi');
+            return;
+        }
+
         flight.date = departureDate;
         flight.time = departureDate;
         for (var i = 0; i < $scope.info.length; ++i) {
@@ -108,13 +114,6 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
             });
     };
 
-
-    $scope.book = function (flight) {
-        Flight.save(flight, function () {
-
-        });
-    };
-
     /*$(document).ready(function() {
      $('select').material_select();
      });*/
@@ -129,10 +128,6 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
         },
         function (start, end, label) {
             departureDate = (new Date(start)).getTime();
-
-            var a = 1;
-
-            // $scope.returnDate = 0;
         });
 
 });

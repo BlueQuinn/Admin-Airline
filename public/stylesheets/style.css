@@ -58,3 +58,19 @@ i:hover
 {
 	color: white;
 }
+
+.actionbar
+{
+	background-color: #00b0ff;
+	box-shadow: 5px 0px 5px #B0BEC5;
+	padding: 1%;
+	margin:0 auto;
+	max-width: 1280px;
+	width: 85%;
+	text-align: center;
+}
+
+h3
+{
+	color: white;
+}
