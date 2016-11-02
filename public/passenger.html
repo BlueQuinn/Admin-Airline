@@ -1,0 +1,62 @@
+<div class="menu" ng-include="'menu.html'">
+</div>
+
+<div class="content col-lg-12">
+
+    <div class="actionbar">
+        <h3>Passengers Dashboard</h3>
+    </div>
+    <div class="box" ng-controller="AirportController">
+        <form name="booking_dashboard" novalidate>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Mã đặt chỗ</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+
+                    <th>loại</th>
+                    <th>title???</th>
+                    <th>Tên</th>
+                    <th>Họ</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
+                    <th>CMND</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in bookings">
+                    <td>{{item.bookingId}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.email}}</td>
+
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.type}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.title}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.firstname}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.lastname}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.gender}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.birthday}}</p>
+                    </td>
+                    <td>
+                        <p ng-repeat="info in item.info">{{info.id}}</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+
+</div>

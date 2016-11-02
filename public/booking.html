@@ -1,0 +1,50 @@
+<div class="menu" ng-include="'menu.html'">
+</div>
+
+<div class="content col-lg-12">
+
+    <div class="actionbar">
+        <h3>Airports Dashboard</h3>
+    </div>
+    <div class="box" ng-controller="AirportController">
+        <form name="booking_dashboard" novalidate>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Mã đặt chỗ</th>
+                    <th>Ngày đặt</th>
+                    <th>Giá</th>
+                    <th>Trạng thái</th>
+                    <th>Mã chuyến bay</th>
+                    <th>Ngày bay</th>
+                    <th>Hạng vé</th>
+                    <th>Mức giá</th>
+                    <th>Giá vé</th>
+                    <th>Số người lớn</th>
+                    <th>Số trẻ em</th>
+                    <th>Số trẻ sơ sinh</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in bookings">
+                    <td>{{item.bookingId}}</td>
+                    <td>{{item.date_book}}</td>
+                    <td>{{item.cost}}</td>
+                    <td>{{item.status}}</td>
+
+                    <td>{{item.flightId}}</td>
+                    <td>{{item.date_flight}}</td>
+                    <td>{{item.class}}</td>
+                    <td>{{item.price}}</td>
+
+                    <td>{{item.adult}}</td>
+                    <td>{{item.children}}</td>
+                    <td>{{item.baby}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+
+</div>
