@@ -10,8 +10,7 @@ router.post('/', function (req, res) {
 
     var flight = Object.assign(new Flight(), req.body);
     flight.date = longToDate(req.body.date);
-    flight.time = longToTime(req.body.time);
-    //flight.info.available_seat = flight.info.total_seat;
+    flight.time = req.body.time;
 
     Flight.find({flightId: flight.flightId, date: flight.date}, function (err, data) {
         if (err) {
@@ -112,6 +111,23 @@ router.get('/', function (req, res) {
     }
 });
 
+router.delete('/:id', function(req, res){
+    Flight.remove({flightId: req.params.id}, function(err){
+        if (err) {
+            res.send({
+                status: 400,
+                message: 'Delete failed'
+            });
+            return;
+        }
+        res.json({
+            status: 200,
+            message: 'Flight deleted',
+            flightId: req.params.id
+        });
+    });
+});
+
 
 function filterQuery(query) {
     if (query.departure !== undefined && query.arrival !== undefined &&
@@ -130,10 +146,6 @@ function longToDate(millisecond) {
     return date.getDate().toString() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 }
 
-function longToTime(millisecond) {
-    var date = new Date(millisecond);
-    return date.getHours().toString() + ':' + date.getMinutes();
-}
 
 var SEARCH_FLIGHTS = 1;
 var GET_ALL_FLIGHTS = 2;

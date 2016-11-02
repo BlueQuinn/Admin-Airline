@@ -1,0 +1,57 @@
+<div class="menu" ng-include="'menu.html'">
+</div>
+
+<div class="content col-lg-12">
+
+<div class="actionbar">
+    <h3>Airports Dashboard</h3>
+</div>
+<div class="box" ng-controller="AirportController">
+    <form name="airport_dashboard" novalidate>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Airport code</th>
+                <th>City</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in airports">
+                <td>{{item.airportId}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn-transparent" ng-click="delete(item)">
+                            <i class="material-icons icon">delete</i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <md-input-container>
+                        <label>Mã sân bay</label>
+                        <input required ng-model="airport.airportId">
+                    </md-input-container>
+                </td>
+                <td>
+                    <md-input-container>
+                        <label>Tên sân bay</label>
+                        <input required ng-model="airport.name">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-button class="md-raised md-primary" ng-click="add(airport)" ng-if="!airport._id" type="submit"
+                               ng-disabled="!airport_dashboard.$valid">Thêm
+                    </md-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+</div>

@@ -1,0 +1,103 @@
+<div class="menu" ng-include="'menu.html'">
+    </div>
+
+<div class="content col-lg-12">
+
+    <div class="actionbar">
+        <h3>Flights Dashboard</h3>
+    </div>
+    <div class="box" ng-controller="FlightController">
+        <form name="flight_dashboard" novalidate>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Mã chuyến bay</th>
+                    <th>Nơi đi</th>
+                    <th>Nơi đến</th>
+                    <th>Ngày</th>
+                    <th>Giờ bay</th>
+                    <th>Thương gia linh hoạt</th>
+                    <th>Thương gia tiêu chuẩn</th>
+                    <th>Phổ thông linh hoạt</th>
+                    <th>Phổ thông tiêu chuẩn</th>
+                    <th>Phổ thông tiết kiệm</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in flights">
+                    <td>{{item.flightId}}</td>
+                    <td>{{item.departureCity}}</td>
+                    <td>{{item.arrivalCity}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.time}}</td>
+
+                    <td ng-repeat="info in item.info">
+                        <p>Còn <i>{{info.available_seat}}/{{info.total_seat}}</i> ghế</p>
+                        <p>Giá <i>{{info.cost}}</i> VNĐ</p>
+                    </td>
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn-transparent" ng-click="delete(item)">
+                                <i class="material-icons icon">delete</i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <md-input-container>
+                    <label>Mã chuyến bay</label>
+                    <input required ng-model="flight.flightId">
+                </md-input-container>
+            </div>
+
+            <div>
+                <md-input-container style="margin-right: 10px;">
+                    <label>Sân bay đi</label>
+                    <md-select required="" ng-model="flight.departure">
+                        <md-option ng-repeat="item in airports" value="{{item.airportId}}">
+                            {{item.name}}({{item.airportId}})
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <br/>
+
+            <div>
+                <md-input-container style="margin-right: 10px;">
+                    <label>Sân bay đến</label>
+                    <md-select required="" ng-model="flight.arrival">
+                        <md-option ng-repeat="item in airports" value="{{item.airportId}}">
+                            {{item.name}}({{item.airportId}})
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <br/>
+
+            <input type="text" id="datetimepicker"/>
+
+            <div ng-repeat="item in info">
+                <h5>{{item}}</h5>
+                <md-input-container>
+                    <label>Số ghế</label>
+                    <input required type="number" min="0" ng-model="flight.info[$index].total_seat">
+                </md-input-container>
+                <md-input-container>
+                    <label>Giá</label>
+                    <input required ng-model="flight.info[$index].cost">
+                </md-input-container>
+            </div>
+
+            <md-button class="md-raised md-primary" ng-click="add(flight)" ng-if="!flight._id" type="submit"
+                       ng-disabled="!flight_dashboard.$valid">Thêm
+            </md-button>
+        </form>
+    </div>
+
+</div>

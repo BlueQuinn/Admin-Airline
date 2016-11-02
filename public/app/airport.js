@@ -2,11 +2,11 @@
  * Created by lequan on 10/20/2016.
  */
 
-app.controller('AirportController', function ($scope, Airport) {
+app.controller('AirportController', function ($scope, Airport, AirportService) {
 
     var reload = function () {
         $scope.airports = Airport.query(function (data) {
-            var a = data;
+            AirportService.setAirports(data);
         });
 
         $scope.airport = {};
@@ -21,4 +21,9 @@ app.controller('AirportController', function ($scope, Airport) {
         });
     };
 
+    $scope.delete = function (airport) {
+        Airport.delete({id: airport.airportId}, function(){
+            reload();
+        });
+    };
 });

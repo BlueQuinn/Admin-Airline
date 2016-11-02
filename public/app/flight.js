@@ -2,28 +2,27 @@
  * Created by lequan on 10/20/2016.
  */
 
+app.controller('FlightController', function ($scope, Flight, Airport, AirportService) {
 
-app.controller('FlightController', function ($scope, Flight, Airport) {
-
-    var departureDate;
+    var departureDate = moment().toDate();
     $scope.info = ['Thương gia linh hoạt', 'Thương gia tiêu chuẩn', 'Phổ thông linh hoạt', 'Phổ thông tiêu chuẩn', 'Phổ thông tiết kiệm'];
     $scope.class = ['C', 'C', 'Y', 'Y', 'Y'];
     $scope.price = ['F', 'S', 'F', 'S', 'C'];
-
 
     var reload = function () {
 
         Flight.query(function (data) {
             $scope.flights = [];
             data.forEach(function (flight) {
-                flight.info.forEach(function (info) {
+
                     var item = {};
                     item.flightId = flight.flightId;
                     item.departure = flight.departure;
                     item.arrival = flight.arrival;
                     item.date = flight.date;
                     item.time = flight.time;
-                    item.total_seat = info.total_seat;
+                    item.info = flight.info;
+                    /*item.total_seat = info.total_seat;
                     item.cost = info.cost;
 
                     switch (info.class) {
@@ -45,13 +44,13 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
                         case 'C':
                             item.price = 'Tiết kiệm';
                             break;
-                    }
+                    }*/
 
                     $scope.flights.push(item);
                 });
 
-                var g =1 ;
-            });
+            $scope.flights = AirportService.getCity($scope.flights);
+
         });
 
         $scope.flight = {};
@@ -63,6 +62,7 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
     $scope.getAirports = function () {
         Airport.query(function (data) {
             $scope.airports = data;
+            AirportService.setAirports(data);
         });
     };
 
@@ -75,8 +75,8 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
             return;
         }
 
-        flight.date = departureDate;
-        flight.time = departureDate;
+        flight.date = parseDate(departureDate);
+        flight.time = parseTime(departureDate);
         for (var i = 0; i < $scope.info.length; ++i) {
             flight.info[i].class = $scope.class[i];
             flight.info[i].price = $scope.price[i];
@@ -90,7 +90,6 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
 
 
     $scope.getArrival = function () {
-
         Flight.query({departure: $scope.flight.departure}, function (data) {
             $scope.arrivals = [];
             data.forEach(function (item) {
@@ -124,10 +123,27 @@ app.controller('FlightController', function ($scope, Flight, Airport) {
             showDropdowns: true,
             locale: {
                 format: 'hh:mm DD/MM/YYYY'
-            }
+            },
+            startDate: departureDate
         },
         function (start, end, label) {
             departureDate = (new Date(start)).getTime();
         });
 
+    $scope.delete = function (flight) {
+        Flight.delete({id: flight.flightId}, function(){
+            reload();
+        });
+    };
+
 });
+
+function parseTime(date) {
+    return date.getHours() + ':' + date.getMinutes();
+}
+
+function parseDate(date) {
+    if (date == 0)
+        return 0;
+    return date.getDate().toString() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+}

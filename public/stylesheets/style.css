@@ -1,76 +1,103 @@
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak 
-{
-	display: none !important;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
 
-body
-{
-	padding: 5%;
-	background-color: #F5F5F5;
+body {
+}
+
+.content {
+    padding: 5%;
+    margin:0 auto;
+    background: linear-gradient(180deg, #BBDEFB 0%, #80DEEA 100%);
 }
 
 table {
-	margin: 0 auto;
+    margin: 0 auto;
 
 }
 
-.table1{
-width: 500px;
+.table1 {
+    width: 500px;
 }
 
-.btn-transparent
+.btn-transparent {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.btn-transparent:hover {
+    background-color: #009688;
+}
+
+th {
+    color: #00b0ff;
+    text-align: left;
+}
+
+.box {
+    background-color: white;
+    padding: 3%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    width: 85%;
+}
+
+.icon {
+    color: #f50057;
+}
+
+.icon:hover {
+    color: white;
+}
+
+.actionbar {
+    background-color: #00b0ff;
+    padding: 1%;
+    margin: 0 auto;
+    width: 85%;
+    text-align: center;
+}
+
+h3 {
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #e91e63;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #FCE4EC;
+}
+
+.li-logo
 {
-	background-color: transparent;
-	background-repeat:no-repeat;
-	border: none;
-	cursor:pointer;
-	overflow: hidden;
-	border-radius: 50%;
+    float: left;
 }
 
-.btn-transparent:hover
+.logo
 {
-	background-color: #009688;
-}
-
-th
-{
-	color: #009688;
-	text-align: left;
-}
-
-.container
-{
-	background-color: white;
-	box-shadow: 5px 5px 5px #B0BEC5;
-	padding: 3%;
-	margin:0 auto;
-	max-width: 1280px;
-	width: 85%;
-}
-
-i
-{
-	color: #009688;
-}
-
-i:hover
-{
-	color: white;
-}
-
-.actionbar
-{
-	background-color: #00b0ff;
-	box-shadow: 5px 0px 5px #B0BEC5;
-	padding: 1%;
-	margin:0 auto;
-	max-width: 1280px;
-	width: 85%;
-	text-align: center;
-}
-
-h3
-{
-	color: white;
+    padding: 5px;
+    width: 45px;
 }

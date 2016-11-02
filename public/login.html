@@ -1,0 +1,27 @@
+<div ng-controller="LoginController" class="background">
+<div class="pen-title">
+    <h1>Admin Dashboard</h1>
+    <h3>{{message}}</h3>
+</div>
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+        <h1 class="title">Login</h1>
+        <form>
+            <div class="input-container">
+                <input ng-model="admin.username" type="text" id="Username" required="required"/>
+                <label for="Username">Username</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input ng-model="admin.password" type="password" id="Password" required="required"/>
+                <label for="Password">Password</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container">
+                <button ng-click="login()"><span>Login</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

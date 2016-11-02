@@ -10,162 +10,13 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/daterangepicker.css">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/login.css">
 </head>
+
 <body ng-cloak ng-app="app">
-<h1 style="padding-left: 50px">Admin Dashboard</h1>
 
-<div class="actionbar col-lg-12">
-<h3>Airports Dashboard</h3>
+<div ng-view>
 </div>
-<div class="container" ng-controller="AirportController">
-    <form name="airport_dashboard" novalidate>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Airport code</th>
-                <th>City</th>
-             <!--   <th></th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in airports">
-                <td>{{item.airportId}}</td>
-                <td>{{item.name}}</td>
-            <!--    <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn-transparent" ng-click="delete(item)">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
-                </td>-->
-            </tr>
-
-            <tr>
-                <td>
-                    <md-input-container>
-                        <label>Mã sân bay</label>
-                        <input required ng-model="airport.airportId">
-                    </md-input-container>
-                </td>
-                <td>
-                    <md-input-container>
-                        <label>Tên sân bay</label>
-                        <input required ng-model="airport.name">
-                    </md-input-container>
-                </td>
-
-                <td>
-                    <md-button class="md-raised md-primary" ng-click="add(airport)" ng-if="!airport._id" type="submit"
-                               ng-disabled="!airport_dashboard.$valid">Thêm</md-button>
-
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
-</div>
-
-<br>
-
-<div class="actionbar col-lg-12">
-    <h3>Flights Dashboard</h3>
-</div>
-<div class="container" ng-controller="FlightController">
-    <h3>Flights Dashboard</h3>
-    <form name="flight_dashboard" novalidate>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Mã chuyến bay</th>
-                <th>Nơi đi</th>
-                <th>Nơi đến</th>
-                <th>Ngày</th>
-                <th>Giờ bay</th>
-                <th>Hạng vé</th>
-                <th>Mức giá</th>
-                <th>Số ghế</th>
-                <th>Giá vé</th>
-              <!--  <th></th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in flights">
-                <td>{{item.flightId}}</td>
-                <td>{{item.departure}}</td>
-                <td>{{item.arrival}}</td>
-                <td>{{item.date}}</td>
-                <td>{{item.time}}</td>
-                <td>{{item.class}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.total_seat}}</td>
-                <td>{{item.cost}}</td>
-              <!--  <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn-transparent" ng-click="delete(item)">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
-                </td>-->
-
-                <br>
-
-            </tr>
-            </tbody>
-        </table>
-
-        <div>
-            <md-input-container>
-                <label>Mã chuyến bay</label>
-                <input required ng-model="flight.flightId">
-            </md-input-container>
-        </div>
-
-        <div>
-            <md-input-container style="margin-right: 10px;">
-                <label>Sân bay đi</label>
-                <md-select required="" ng-model="flight.departure">
-                    <md-option ng-repeat="item in airports" value="{{item.airportId}}">
-                        {{item.name}}({{item.airportId}})
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-
-        <br/>
-
-        <div>
-            <md-input-container style="margin-right: 10px;">
-                <label>Sân bay đến</label>
-                <md-select required="" ng-model="flight.arrival">
-                    <md-option ng-repeat="item in airports" value="{{item.airportId}}">
-                        {{item.name}}({{item.airportId}})
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-        <br/>
-
-        <input type="text" id="datetimepicker"/>
-
-        <div ng-repeat="item in info">
-            <h5>{{item}}</h5>
-            <md-input-container>
-                <label>Số ghế</label>
-                <input required type="number" min="0" ng-model="flight.info[$index].total_seat">
-            </md-input-container>
-            <md-input-container>
-                <label>Giá</label>
-                <input required ng-model="flight.info[$index].cost">
-            </md-input-container>
-        </div>
-
-        <md-button class="md-raised md-primary" ng-click="add(flight)" ng-if="!flight._id" type="submit"
-                   ng-disabled="!flight_dashboard.$valid">Thêm</md-button>
-    </form>
-</div>
-
-<div data-loading></div>
-
 
 <script src="javascripts/jquery-3.1.1.min.js"></script>
 <script src="javascripts/angular.min.js"></script>
@@ -173,12 +24,16 @@
 <script src="javascripts/angular-animate.min.js"></script>
 <script src="javascripts/angular-messages.min.js"></script>
 <script src="javascripts/angular-aria.min.js"></script>
+<script src="javascripts/angular-route.min.js"></script>
 <script src="javascripts/angular-material.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
 <script src="javascripts/moment.min.js"></script>
 <script src="javascripts/daterangepicker.js"></script>
 <script src="app/app.js"></script>
 <script src="app/factory.js"></script>
+<script src="app/service.js"></script>
+<script src="app/login.js"></script>
+<script src="app/logout.js"></script>
 <script src="app/airport.js"></script>
 <script src="app/flight.js"></script>
 </body>
